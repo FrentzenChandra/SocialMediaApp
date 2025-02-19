@@ -1,4 +1,5 @@
-import {View, Image, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 import styles from './userStoriesStyle';
 import PropTypes from 'prop-types';
 import UserProfile from '../UserProfile/UserProfile';

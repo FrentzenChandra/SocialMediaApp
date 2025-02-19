@@ -37,6 +37,10 @@ const globalStyles = StyleSheet.create({
     color: '#fff',
   },
 
+  ruler: {
+    borderBottomColor: '#d9d9d9',
+    borderWidth: 1,
+  },
 });
 
 export default globalStyles;

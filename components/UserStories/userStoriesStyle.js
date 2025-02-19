@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 21,
+    marginBottom: 20,
   },
-
-  
 
   userStoriesName: {
     marginTop: 8,
