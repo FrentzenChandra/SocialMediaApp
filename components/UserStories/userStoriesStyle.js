@@ -1,17 +1,18 @@
 import {StyleSheet} from 'react-native';
+import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
   userStoriesContainer: {
-    marginRight: 20,
+    marginRight: horizontalScale(20),
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 21,
-    marginBottom: 20,
+    marginTop: verticalScale(21),
+    marginBottom: verticalScale(10),
   },
 
   userStoriesName: {
-    marginTop: 8,
+    marginTop: verticalScale(8),
   },
 });
 

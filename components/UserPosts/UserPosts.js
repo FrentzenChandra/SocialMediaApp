@@ -1,47 +1,60 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, Image} from 'react-native';
+import React from 'react';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import UserProfile from '../UserProfile/UserProfile';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEllipsis} from '@fortawesome/free-solid-svg-icons/faEllipsis';
-import findFonts from '../../assets/fonts/helper/helper';
 import {
   faBookmark,
   faComment,
   faHeart,
 } from '@fortawesome/free-regular-svg-icons';
-import {height} from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import PropTypes from 'prop-types';
 import styles from './userPostStyle';
 import globalStyles from '../../assets/styles/styles';
+import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 const UserPosts = props => {
   return (
     <View style={styles.userPostContainer}>
       <View style={styles.userPostHeadContainer}>
         <UserProfile
-          width={40}
-          height={40}
+          width={horizontalScale(40)}
+          height={horizontalScale(40)}
           image={require('../../assets/images/default_profile.png')}
         />
-        <View style={{marginLeft: 10}}>
+        <View style={styles.userPostNameContainer}>
           <Text style={styles.userPostNameText}>
             {props.firstName + ' ' + props.lastName}
           </Text>
           <Text style={styles.userPostLocationText}>{props.location}</Text>
         </View>
-        <FontAwesomeIcon
-          icon={faEllipsis}
-          size={32}
-          style={{marginLeft: 'auto'}}
-        />
+        <TouchableOpacity style={styles.ellipsisContainer}>
+          <FontAwesomeIcon
+            style={styles.ellipsisButton}
+            icon={faEllipsis}
+            size={horizontalScale(30)}
+          />
+        </TouchableOpacity>
       </View>
       <Image source={props.image} style={styles.userPostImage} />
-      <View style={styles.userPostReactionContainer}>
-        <FontAwesomeIcon icon={faHeart} />
-        <Text>{props.likes}</Text>
-        <FontAwesomeIcon icon={faComment} />
-        <Text>{props.comments}</Text>
-        <FontAwesomeIcon icon={faBookmark} />
-        <Text>{props.bookmarks}</Text>
+      <View style={styles.userPostStats}>
+        <FontAwesomeIcon
+          style={styles.userPostStatIcons}
+          icon={faHeart}
+          size={horizontalScale(15)}
+        />
+        <Text style={styles.userPostStatButtons}>{props.likes}</Text>
+        <FontAwesomeIcon
+          style={styles.userPostStatIcons}
+          icon={faComment}
+          size={horizontalScale(15)}
+        />
+        <Text style={styles.userPostStatButtons}>{props.comments}</Text>
+        <FontAwesomeIcon
+          style={styles.userPostStatIcons}
+          icon={faBookmark}
+          size={horizontalScale(15)}
+        />
+        <Text style={styles.userPostStatButtons}>{props.bookmarks}</Text>
       </View>
       <View style={globalStyles.ruler} />
     </View>

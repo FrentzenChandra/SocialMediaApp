@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, Text, FlatList} from 'react-native';
+import {SafeAreaView, Text, FlatList, Dimensions} from 'react-native';
 import Title from './components/Title/Title';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import UserStories from './components/UserStories/UserStories';
 import UserPosts from './components/UserPosts/UserPosts';
 
@@ -182,6 +180,8 @@ const userPosts = [
   },
 ];
 
+const screenHeightAndDimension = Dimensions.get('window');
+
 const pagination = (database, currentPage, pageSize) => {
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
@@ -190,10 +190,42 @@ const pagination = (database, currentPage, pageSize) => {
     return [];
   }
 
+  console.log(screenHeightAndDimension);
+
   return database.slice(startIndex, endIndex);
 };
 
 const App = () => {
+  const appendDataPostOnEnd = () => {
+    setuserPostLoading(true);
+    const toAppendData = pagination(
+      userPosts,
+      userPostCurrentPage + 1,
+      pagePostSize,
+    );
+
+    if (toAppendData.length > 0) {
+      setuserPostRenderedData(prevData => [...prevData, ...toAppendData]);
+      setuserPostCurrentPage(userPostCurrentPage + 1);
+    }
+    setuserPostLoading(false);
+  };
+
+  const appendDataStoriesOnEnd = () => {
+    setuserStoriesLoading(true);
+    const dataToAppend = pagination(
+      userStories,
+      userStoriesCurrentPage + 1,
+      pageStoriesSize,
+    );
+    console.log('COba aja ');
+    if (dataToAppend.length > 0) {
+      setuserStoriesCurrentPage(userStoriesCurrentPage + 1);
+      setuserStoriesRenderedData(prevData => [...prevData, ...dataToAppend]);
+    }
+    setuserStoriesLoading(false);
+  };
+
   const pageStoriesSize = 4;
 
   const [userStoriesoading, setuserStoriesLoading] = useState(false);
@@ -211,6 +243,11 @@ const App = () => {
     setuserStoriesCurrentPage(1);
     setuserStoriesRenderedData(pagination(userStories, 1, pageStoriesSize));
     setuserStoriesLoading(false);
+
+    setuserPostLoading(true);
+    setuserPostCurrentPage(1);
+    setuserPostRenderedData(pagination(userPosts, 1, pagePostSize));
+    setuserStoriesLoading(false);
   }, []);
 
   return (
@@ -221,22 +258,7 @@ const App = () => {
             <Title title="Let's Explore" notifications={2} />
             <FlatList
               onEndReachedThreshold={0.7}
-              onEndReached={() => {
-                setuserStoriesLoading(true);
-                const dataToAppend = pagination(
-                  userStories,
-                  userStoriesCurrentPage + 1,
-                  pageStoriesSize,
-                );
-                if (dataToAppend.length > 0) {
-                  setuserStoriesCurrentPage(userStoriesCurrentPage + 1);
-                  setuserStoriesRenderedData(prevData => [
-                    ...prevData,
-                    ...dataToAppend,
-                  ]);
-                }
-                setuserStoriesLoading(false);
-              }}
+              onEndReached={appendDataStoriesOnEnd}
               style={{
                 marginHorizontal: 23,
               }}
@@ -254,7 +276,7 @@ const App = () => {
           </>
         }
         showsVerticalScrollIndicator={false}
-        data={userPosts}
+        data={userPostRenderedData}
         renderItem={({item}) => (
           <UserPosts
             firstName={item.firstName}
@@ -264,8 +286,11 @@ const App = () => {
             comments={item.comments}
             bookmarks={item.bookmarks}
             image={item.image}
+            key={item.id}
           />
         )}
+        onEndReachedThreshold={0.5}
+        onEndReached={appendDataPostOnEnd}
       />
     </SafeAreaView>
   );

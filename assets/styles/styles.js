@@ -1,10 +1,11 @@
 import {StyleSheet} from 'react-native';
 import findFonts from '../fonts/helper/helper';
+import {fontScale, horizontalScale, verticalScale} from './scaling';
 
 const globalStyles = StyleSheet.create({
   Header: {
-    marginHorizontal: 26,
-    marginTop: 30,
+    marginHorizontal: horizontalScale(26),
+    marginTop: verticalScale(15),
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -12,7 +13,8 @@ const globalStyles = StyleSheet.create({
   },
   messageContainer: {
     backgroundColor: '#f8f8fa',
-    padding: 15,
+    paddingHorizontal: horizontalScale(15),
+    paddingVertical: horizontalScale(15),
     borderRadius: 80,
     alignItems: 'center',
   },
@@ -21,18 +23,18 @@ const globalStyles = StyleSheet.create({
     padding: 1,
     backgroundColor: '#F35BAC',
     borderRadius: 10,
-    width: 10,
-    height: 10,
+    width: horizontalScale(10),
+    height: horizontalScale(10),
     position: 'absolute',
-    top: 12,
-    right: 12,
+    top: verticalScale(9),
+    right: horizontalScale(12),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
 
   messageNumber: {
-    fontSize: 6,
+    fontSize: fontScale(6),
     fontFamily: findFonts('Inter', '600'),
     color: '#fff',
   },

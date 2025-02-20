@@ -1,33 +1,53 @@
 import {StyleSheet} from 'react-native';
 import findFonts from '../../assets/fonts/helper/helper';
+import {
+  fontScale,
+  horizontalScale,
+  verticalScale,
+} from '../../assets/styles/scaling';
 
 const styles = StyleSheet.create({
-  userPostContainer: {marginHorizontal: 35},
+  ellipsisContainer: {marginLeft: 'auto'},
+  ellipsisButton: {color: '#79869F'},
+  userPostContainer: {marginHorizontal: horizontalScale(30)},
   userPostHeadContainer: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: verticalScale(13),
   },
+  userPostNameContainer: {marginLeft: horizontalScale(10)},
   userPostNameText: {
-    fontSize: 16,
+    fontSize: fontScale(16),
     fontFamily: findFonts('Inter', 600),
-    marginBottom: 2,
+    marginBottom: verticalScale(2),
   },
-  userPostLocationText: {fontSize: 12, fontFamily: findFonts('Inter', 400)},
+  userPostLocationText: {
+    color: '#79869F',
+    fontSize: fontScale(12),
+    fontFamily: findFonts('Inter', 400),
+  },
   userPostImage: {
     width: '100%',
     height: 220,
-    borderRadius: 20,
+    borderRadius: horizontalScale(20),
     alignSelf: 'center',
   },
-  userPostReactionContainer: {
-    marginTop: 16,
-    marginBottom: 20,
+  userPostStats: {
+    marginTop: verticalScale(16),
+    marginBottom: verticalScale(20),
     display: 'flex',
-    justifyContent: 'space-evenly',
     flexDirection: 'row',
-    width: 190,
+    alignItems: 'center',
+    marginLeft: horizontalScale(5),
+  },
+  userPostStatButtons: {
+    color: '#79869F',
+    marginLeft: horizontalScale(5),
+    marginRight: horizontalScale(27),
+  },
+  userPostStatIcons: {
+    color: '#79869F',
   },
 });
 

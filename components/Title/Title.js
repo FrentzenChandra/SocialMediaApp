@@ -5,12 +5,13 @@ import styles from './style';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faEnvelope} from '@fortawesome/free-solid-svg-icons/faEnvelope';
 import globalStyles from '../../assets/styles/styles';
+import { horizontalScale } from '../../assets/styles/scaling';
 const Title = props => {
   return (
     <View style={globalStyles.Header}>
       <Text style={styles.title}>{props.title}</Text>
       <TouchableOpacity style={globalStyles.messageContainer}>
-        <FontAwesomeIcon icon={faEnvelope} style={styles.messageIcon} />
+        <FontAwesomeIcon icon={faEnvelope} size={horizontalScale(16)}/>
         <View
           style={[
             globalStyles.messageNumberContainer,
