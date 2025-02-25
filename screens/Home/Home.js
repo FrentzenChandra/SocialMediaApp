@@ -10,6 +10,7 @@ import {
 import Title from '../../components/Title/Title';
 import UserPosts from '../../components/UserPosts/UserPosts';
 import UserStories from '../../components/UserStories/UserStories';
+import globalStyle from './style';
 
 const userStories = [
   {
@@ -256,7 +257,7 @@ const Home = () => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={globalStyle.whiteBackground}>
       <StatusBar barStyle={'light-content'} />
       <FlatList
         ListHeaderComponent={
