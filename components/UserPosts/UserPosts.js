@@ -10,7 +10,6 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import PropTypes from 'prop-types';
 import styles from './userPostStyle';
-import globalStyles from '../../assets/styles/styles';
 import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
 const UserPosts = props => {
   return (
@@ -56,7 +55,7 @@ const UserPosts = props => {
         />
         <Text style={styles.userPostStatButtons}>{props.bookmarks}</Text>
       </View>
-      <View style={globalStyles.ruler} />
+      <View style={styles.ruler} />
     </View>
   );
 };
