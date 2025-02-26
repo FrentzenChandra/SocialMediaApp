@@ -6,11 +6,16 @@ import {
   Dimensions,
   Platform,
   StatusBar,
+  View,
+  TouchableOpacity,
 } from 'react-native';
 import Title from '../../components/Title/Title';
 import UserPosts from '../../components/UserPosts/UserPosts';
 import UserStories from '../../components/UserStories/UserStories';
-import globalStyle from './style';
+import style from './style';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faEnvelope} from '@fortawesome/free-solid-svg-icons';
+import globalStyle from '../../assets/styles/styles';
 
 const userStories = [
   {
@@ -188,6 +193,8 @@ const userPosts = [
   },
 ];
 
+const msgNotif = 2;
+
 const screenHeightAndDimension = Dimensions.get('window');
 
 const pagination = (database, currentPage, pageSize) => {
@@ -200,8 +207,7 @@ const pagination = (database, currentPage, pageSize) => {
   return database.slice(startIndex, endIndex);
 };
 
-const Home = () => {
-  console.log(Platform);
+const Home = ({navigation}) => {
   const appendDataPostOnEnd = () => {
     setuserPostLoading(true);
     const toAppendData = pagination(
@@ -262,7 +268,22 @@ const Home = () => {
       <FlatList
         ListHeaderComponent={
           <>
-            <Title title="Let's Explore" notifications={2} />
+            <View style={style.Header}>
+              <Title title="Let's Explore" notifications={2} />
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Profile')}
+                style={style.messageContainer}>
+                <FontAwesomeIcon icon={faEnvelope} style={style.messageIcon} />
+                <View
+                  style={[
+                    style.messageNumberContainer,
+                    msgNotif <= 0 ? {display: 'none'} : {},
+                  ]}>
+                  <Text style={style.messageNumber}>{msgNotif}</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+
             <FlatList
               onEndReachedThreshold={0.7}
               onEndReached={appendDataStoriesOnEnd}
