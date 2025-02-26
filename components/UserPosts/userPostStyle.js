@@ -49,10 +49,7 @@ const styles = StyleSheet.create({
   userPostStatIcons: {
     color: '#79869F',
   },
-  ruler: {
-    borderBottomColor: '#d9d9d9',
-    borderWidth: 1,
-  },
+
 });
 
 export default styles;

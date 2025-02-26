@@ -11,6 +11,7 @@ import {
 import PropTypes from 'prop-types';
 import styles from './userPostStyle';
 import {horizontalScale, verticalScale} from '../../assets/styles/scaling';
+import globalStyle from '../../assets/styles/styles';
 const UserPosts = props => {
   return (
     <View style={styles.userPostContainer}>
@@ -55,7 +56,7 @@ const UserPosts = props => {
         />
         <Text style={styles.userPostStatButtons}>{props.bookmarks}</Text>
       </View>
-      <View style={styles.ruler} />
+      <View style={globalStyle.ruler} />
     </View>
   );
 };
