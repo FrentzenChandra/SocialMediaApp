@@ -56,7 +56,7 @@ const UserPosts = props => {
         />
         <Text style={styles.userPostStatButtons}>{props.bookmarks}</Text>
       </View>
-      <View style={globalStyle.ruler} />
+      <View style={globalStyle.verticalRuler} />
     </View>
   );
 };

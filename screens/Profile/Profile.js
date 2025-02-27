@@ -8,6 +8,8 @@ import {
 } from '../../assets/styles/scaling';
 import findFonts from '../../assets/fonts/helper/helper';
 import style from './style';
+import {width} from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import {ProfileTabs} from '../../navigation/MainNavigation';
 const Profile = ({navigation}) => {
   return (
     <SafeAreaView style={globalStyle.whiteBackground}>
@@ -38,28 +40,34 @@ const Profile = ({navigation}) => {
           }}>
           Emmanuel Robertsen
         </Text>
-        <View
-          style={{
-            marginHorizontal: horizontalScale(20),
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}>
-          <View style={{}}>
-            <Text style={style.statsTextProfile}>45</Text>
-            <Text>Following</Text>
+        <View style={style.statsContainer}>
+          <View style={style.statsTextContainer}>
+            <View>
+              <Text style={style.statsCountTextProfile}>45</Text>
+              <Text style={style.statsTextProfile}>Following</Text>
+            </View>
+            <View style={globalStyle.verticalRuler}></View>
           </View>
-          <View style={globalStyle.ruler}></View>
-          <View>
-            <Text>30</Text>
-            <Text>Followers</Text>
+          <View style={style.statsTextContainer}>
+            <View>
+              <Text style={style.statsCountTextProfile}>30M</Text>
+              <Text style={style.statsTextProfile}>Followers</Text>
+            </View>
+            <View style={globalStyle.verticalRuler}></View>
           </View>
-          <View style={globalStyle.ruler}></View>
-          <View>
-            <Text>100</Text>
-            <Text>Posts</Text>
+          <View style={style.statsTextContainer}>
+            <View>
+              <Text style={style.statsCountTextProfile}>100</Text>
+              <Text style={style.statsTextProfile}>Posts</Text>
+            </View>
           </View>
         </View>
+        <View
+          style={[
+            globalStyle.horizontalRuler,
+            style.profileHorizontalRuler,
+          ]}></View>
+        <ProfileTabs />
       </ScrollView>
     </SafeAreaView>
   );
