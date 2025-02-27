@@ -7,34 +7,13 @@ import Profile from '../screens/Profile/Profile';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {View, Text} from 'react-native';
+import TitleTabsProfile from '../components/TitleTabsProfile/TitleTabsProfile';
+import globalStyle from '../assets/styles/styles';
+import ProfilePhotosTabs from '../components/UserProfile/Tabs/ProfilePhotosTabs';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createMaterialTopTabNavigator();
-
-function Tab1() {
-  return (
-    <View>
-      <Text>Tab 1</Text>
-    </View>
-  );
-}
-
-function Tab2() {
-  return (
-    <View>
-      <Text>Tab 2</Text>
-    </View>
-  );
-}
-
-function Tab3() {
-  return (
-    <View>
-      <Text>Tab 3</Text>
-    </View>
-  );
-}
 
 function MainMenuNavigation() {
   return (
@@ -49,10 +28,37 @@ function MainMenuNavigation() {
 
 function ProfileTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Photos" component={Tab1} />
-      <Tab.Screen name="Videos" component={Tab2} />
-      <Tab.Screen name="Saved" component={Tab3} />
+    <Tab.Navigator screenOptions={{tabBarStyle: {zIndex: 0}}}>
+      <Tab.Screen
+        options={{
+          tabBarLabel: ({focused}) => (
+            <TitleTabsProfile title="Photos" focused={focused} />
+          ),
+          tabBarIndicatorStyle: globalStyle.tabIndicatorOff,
+        }}
+        name="Photos"
+        component={ProfilePhotosTabs}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: ({focused}) => (
+            <TitleTabsProfile title="Videos" focused={focused} />
+          ),
+          tabBarIndicatorStyle: globalStyle.tabIndicatorOff,
+        }}
+        name="Videos"
+        component={ProfilePhotosTabs}
+      />
+      <Tab.Screen
+        options={{
+          tabBarLabel: ({focused}) => (
+            <TitleTabsProfile title="Saved" focused={focused} />
+          ),
+          tabBarIndicatorStyle: globalStyle.tabIndicatorOff,
+        }}
+        name="Saved"
+        component={ProfilePhotosTabs}
+      />
     </Tab.Navigator>
   );
 }

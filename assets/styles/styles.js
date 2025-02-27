@@ -21,7 +21,9 @@ const globalStyle = StyleSheet.create({
     borderColor: '#E9EFF1',
     marginLeft: horizontalScale(22),
   },
-
+  tabIndicatorOff: {
+    backgroundColor: 'transparent',
+  },
 });
 
 export default globalStyle;
